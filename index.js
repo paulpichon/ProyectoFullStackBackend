@@ -14,6 +14,8 @@ import veterinarioRoutes from './routes/veterinarioRoutes.js';
 
 //llamar la funcion de EXPRESS
 const app = express();
+//indicar que se van a enviar datos de tipo JSON()
+app.use(express.json());
 
 //busca el archivo .env y escanea las variables
 dotenv.config();
