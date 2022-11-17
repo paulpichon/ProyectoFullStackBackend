@@ -1,0 +1,15 @@
+{
+  "name": "apv-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Proyecto JS FullStack",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Paul Pichon Fabian",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
