@@ -3,9 +3,22 @@
 
 //importar express forma actual
 import express from "express";
+//leer las variables de entorno del archivo .env
+//se debe instalar una dependencia dotenv
+import dotenv from 'dotenv';
+//importar el archivo que creamos de db.js
+//al ser un archivo creado por nosotros debemos poner la extension del archivo en este caso .JS
+import conectarDB from "./config/db.js";
 
 //llamar la funcion de EXPRESS
 const app = express();
+
+//busca el archivo .env y escanea las variables
+dotenv.config();
+
+//llamamos la conexion a la BD
+conectarDB();
+
 
 //.USE(), es como EXPRESS maneja el routing(rutas)
 //req = es lo que estoy enviando
@@ -14,7 +27,11 @@ app.use('/', (req, res) => {
     res.send('Hola Mundo');
 });
 
+//procces.env.PORT : nos da un puerto en automatico
+//en caso de no existir nos asigna al puerto 4000
+const PORT = process.env.PORT || 4000;
+
 //puerto de conexion
-app.listen(4000, () => {
-    console.log("Servidor funcionando en el puerto 4000");
+app.listen(PORT, () => {
+    console.log(`Servidor funcionando en el puerto ${ PORT }`);
 });
