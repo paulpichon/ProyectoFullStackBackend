@@ -37,7 +37,7 @@ const veterinarioSchema = mongoose.Schema({
 });
 
 //registrar en mongo, se pasa como segundo parametro veterinarioSchema
-const veterinario = mongoose.model("Veterinario", veterinarioSchema);
+const Veterinario = mongoose.model("Veterinario", veterinarioSchema);
 
 //importar para usar en otros lugares
-export default veterinario;
+export default Veterinario;
