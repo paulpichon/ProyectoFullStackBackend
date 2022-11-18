@@ -42,8 +42,14 @@ const registrar = async (req,res) => {
 const perfil = (req,res) => {
     res.json({msg: "MOSTRANDO PERFIL"});
 };
+//funcion para confirmar el correo/email
+const confirmar = (req, res) => {
+    console.log(req.params.token);
+    res.json({msg: 'Confirmando cuenta'});
+}
+
 
 //export
 export {
-    registrar, perfil
+    registrar, perfil, confirmar
 }
