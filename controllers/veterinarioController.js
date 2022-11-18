@@ -43,9 +43,34 @@ const perfil = (req,res) => {
     res.json({msg: "MOSTRANDO PERFIL"});
 };
 //funcion para confirmar el correo/email
-const confirmar = (req, res) => {
-    console.log(req.params.token);
-    res.json({msg: 'Confirmando cuenta'});
+const confirmar = async (req, res) => {
+    //ller el parametro "token"
+    const {token} = req.params;
+    //pasamos el parametro
+    const usuarioConfirmar = await Veterinario.findOne({token});
+    
+    //si no hay usuario con ese token
+    if (!usuarioConfirmar) {
+        //mostrar error mensaje
+        const error = new Error("Token no válido");
+        return res.status(404).json({msg: error.message});
+    }
+    
+    //en caso de que exista el token
+    try {
+        //modificar los datos
+        //poner el token en null
+        usuarioConfirmar.token = null;
+        //cambiar el campo confirmado a true
+        usuarioConfirmar.confirmado = true;
+        //guardar los cambios
+        await usuarioConfirmar.save();
+
+        res.json({msg: 'Usuario confirmado correctamente'});
+    } catch (error) {
+        //para debuggear el error en caso de que haya
+        console.log(error);
+    }
 }
 
 
