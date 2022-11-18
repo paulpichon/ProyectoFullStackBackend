@@ -1,5 +1,7 @@
 //importar moongose
 import mongoose from "mongoose";
+//importar generarID
+import generarId from "../helpers/generarId.js";
 
 //estructura modelo de veterinario
 const veterinarioSchema = mongoose.Schema({
@@ -28,7 +30,8 @@ const veterinarioSchema = mongoose.Schema({
         default: null
     },
     token: {
-
+        type: String,
+        default: generarId
     },
     confirmado: {
         type: Boolean,
