@@ -73,8 +73,13 @@ const confirmar = async (req, res) => {
     }
 }
 
+//autenticar usuario LOGIN
+const autenticar = (req, res) => {
 
-//export
-export {
-    registrar, perfil, confirmar
+    //
+    console.log(req.body);
+    res.json({ msg: "AUTENTICADO"});
 }
+
+//export funciones
+export { registrar, perfil, confirmar, autenticar }
