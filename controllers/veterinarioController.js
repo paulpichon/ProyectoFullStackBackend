@@ -1,5 +1,7 @@
 ///import modelo
 import Veterinario from "../models/Veterinario.js";
+//importar JWT
+import generarJWT from "../helpers/generarJWT.js";
 
 //registrar
 const registrar = async (req,res) => {
@@ -96,6 +98,10 @@ const autenticar = async (req, res) => {
 
     //Revisar el password si es correcto
     if (await usuario.comprobarPassword(password)) {
+        //autenticar
+        res.json({token:generarJWT(usuario.id)});
+        
+        
         console.log("password correcto");
     }else {
         //mensaje de error
