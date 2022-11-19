@@ -74,12 +74,22 @@ const confirmar = async (req, res) => {
 }
 
 //autenticar usuario LOGIN
-const autenticar = (req, res) => {
+const autenticar = async (req, res) => {
+    //destructuring
+    const {email} = req.body;
+    //comprobar si el usuario existe
+    const usuario = await Veterinario.findOne({email});
 
-    //
-    console.log(req.body);
-    res.json({ msg: "AUTENTICADO"});
-}
+    //si no existe el usuario
+    if (!usuario) {
+        //mostrar error mensaje
+        const error = new Error("El usuario no existe");
+        return res.status(404).json({msg: error.message});
+    }
+
+    //comprobar si el usuario esta conformado o no
+    
+};
 
 //export funciones
 export { registrar, perfil, confirmar, autenticar }
