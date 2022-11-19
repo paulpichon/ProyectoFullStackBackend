@@ -55,6 +55,13 @@ veterinarioSchema.pre('save', async function(next) {
 
 });
 
+//comprobar el password para autenticar al usuario
+veterinarioSchema.methods.comprobarPassword = async function(passwordFormulario) {
+    //toma 2 parametros, el primero es la info que sera comparada
+    //y el segundo sera con lo que va a ser comparado es decir el password hasheado
+    return await bcrypt.compare(passwordFormulario, this.password);
+};
+
 
 
 //registrar en mongo, se pasa como segundo parametro veterinarioSchema
