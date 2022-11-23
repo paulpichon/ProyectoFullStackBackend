@@ -10,8 +10,12 @@ import {
 //importar checkAuth
 import checkAuth from '../middleware/authMiddleware.js';
 //protegemos agregarPaciente con checkAuth
-//para aagregar un paciente debes tener una cuenta
-router.route('/').post(checkAuth, agregarPaciente).get(obtenerPacientes)
+//para agregar un paciente debes tener una cuenta
+//para obtener pacientes debes tener checkuth
+router
+    .route('/')
+    .post(checkAuth, agregarPaciente)
+    .get(checkAuth, obtenerPacientes)
 
 //exportar
 export default router;
