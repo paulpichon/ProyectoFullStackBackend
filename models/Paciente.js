@@ -18,9 +18,10 @@ const pacientesSchema = mongoose.Schema(
         },
         fecha: {
             type: Date,
-            required: true
+            required: true,
+            default: Date.now()
         },
-        nombre: {
+        sintomas: {
             type: String,
             required: true
         },
