@@ -42,7 +42,11 @@ const registrar = async (req,res) => {
 };
 //perfil
 const perfil = (req,res) => {
-    res.json({msg: "MOSTRANDO PERFIL"});
+
+    //destructuring
+    const { veterinario } = req; 
+
+    res.json({ perfil: veterinario });
 };
 //funcion para confirmar el correo/email
 const confirmar = async (req, res) => {
