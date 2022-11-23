@@ -11,6 +11,8 @@ import dotenv from 'dotenv';
 import conectarDB from "./config/db.js";
 //veterinario Routes al ser un archivo creado por mi se debe poner la extension .js
 import veterinarioRoutes from './routes/veterinarioRoutes.js';
+//pacientesRoutes
+import pacienteRoutes from "./routes/pacienteRoutes.js";
 
 //llamar la funcion de EXPRESS
 const app = express();
@@ -27,7 +29,10 @@ conectarDB();
 //.USE(), es como EXPRESS maneja el routing(rutas)
 //req = es lo que estoy enviando
 //res = lo que estoy recibiendo
+//veterinarios
 app.use('/api/veterinarios', veterinarioRoutes);
+//pacientes
+app.use("/api/pacientes", pacienteRoutes);
 
 //procces.env.PORT : nos da un puerto en automatico
 //en caso de no existir nos asigna al puerto 4000
