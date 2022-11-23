@@ -2,6 +2,8 @@
 import Veterinario from "../models/Veterinario.js";
 //importar JWT
 import generarJWT from "../helpers/generarJWT.js";
+//importar generarId ya que lo usaremos para reestablecer contraseña
+import generarId from "../helpers/generarId.js";
 
 //registrar
 const registrar = async (req,res) => {
@@ -116,7 +118,31 @@ const autenticar = async (req, res) => {
 
 };
 
-const olvidePassword = (req, res) => {}
+const olvidePassword = async (req, res) => {
+    //destructuring
+    const { email } = req.body;
+
+    //verificar si el usuario existe
+    //encontrar al primer registro que conincida
+    //retorna un NULL en caso de no haber coincidencias
+    const existeVeterinario = await Veterinario.findOne({email});
+    //en caso de que no exista el veterinario
+    if (!existeVeterinario) {
+        const error = new Error('El usuario no existe');
+        return res.status(400).json({ msg: error.message });
+    }
+    
+    //en caso de que si exista el veterinario
+    try {
+        existeVeterinario.token = generarId();
+        await existeVeterinario.save();
+        res.json({ msg: "Hemos enviado un email con las instrucciones" });
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}
 //
 const comprobarToken = (req, res) => {}
 //
