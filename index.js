@@ -6,6 +6,8 @@ import express from "express";
 //leer las variables de entorno del archivo .env
 //se debe instalar una dependencia dotenv
 import dotenv from 'dotenv';
+//imporatar CORS para que no haya problemas con las URL tanto del BACKEND como del FRONTEND
+import cors from 'cors';
 //importar el archivo que creamos de db.js
 //al ser un archivo creado por nosotros debemos poner la extension del archivo en este caso .JS
 import conectarDB from "./config/db.js";
@@ -24,6 +26,22 @@ dotenv.config();
 
 //llamamos la conexion a la BD
 conectarDB();
+
+//configuracion de CORS
+const dominiosPermitidos = ['http://localhost:5173'];
+
+const corsOptions = {
+    origin: function(origin, callback) {
+        if (dominiosPermitidos.indexOf(origin) !== -1 ) {
+            //El origen del REQUEST esta permitido
+            callback(null, true);
+        } else {
+            callback(new Error('No permitido por CORS'));
+        }
+    }
+}
+
+app.use(cors(corsOptions));
 
 
 //.USE(), es como EXPRESS maneja el routing(rutas)
