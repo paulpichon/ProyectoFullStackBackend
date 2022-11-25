@@ -28,7 +28,7 @@ dotenv.config();
 conectarDB();
 
 //configuracion de CORS
-const dominiosPermitidos = ['http://localhost:5173'];
+const dominiosPermitidos = ['http://localhost:5173', 'http://localhost:4000', 'http://localhost:3000'];
 
 const corsOptions = {
     origin: function(origin, callback) {

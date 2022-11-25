@@ -4,11 +4,13 @@ import Veterinario from "../models/Veterinario.js";
 import generarJWT from "../helpers/generarJWT.js";
 //importar generarId ya que lo usaremos para reestablecer contraseña
 import generarId from "../helpers/generarId.js";
+//IMPORTAR emailregistro
+import emailRegistro from "../helpers/emailRegistro.js";
 
 //registrar
 const registrar = async (req,res) => {
     //destructuring
-    const {email} = req.body;
+    const {email, nombre} = req.body;
 
     //prevenir usuarios duplicados
     //busca una coincidencia findOne({email})
@@ -31,6 +33,14 @@ const registrar = async (req,res) => {
         const veterinario = new Veterinario(req.body);
         //await
         const veterinarioGuardado = await veterinario.save();
+
+        //ENVIAR EMAIL DE CONFIRMACION
+        //llamar email registro
+        emailRegistro({
+            email,
+            nombre,
+            token: veterinarioGuardado.token
+        });
 
         //en caso de exito
         res.json(veterinarioGuardado);
