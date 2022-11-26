@@ -60,7 +60,7 @@ const perfil = (req,res) => {
     //destructuring
     const { veterinario } = req; 
 
-    res.json({ perfil: veterinario });
+    res.json(veterinario);
 };
 //funcion para confirmar el correo/email
 const confirmar = async (req, res) => {
