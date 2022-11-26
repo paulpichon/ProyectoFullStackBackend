@@ -177,7 +177,7 @@ const comprobarToken = async (req, res) => {
         res.json({ msg: "Token valido y el usuario existe" });
     }else {
         const error = new Error("Token no valido");
-        return res.json({ msg: error.message });
+        return res.status(400).json({ msg: error.message });
     }
 
 }
