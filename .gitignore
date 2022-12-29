@@ -1,2 +1,3 @@
 # Ignora los archivos relacionados a variables de entorno
+node_modules
 .env
